@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.surrounding_facilities.SurroundingFacilitiesFragment">
 
@@ -15,9 +16,36 @@
         app:titleTextColor="@color/black"
         android:background="@color/mainColor">
     </androidx.appcompat.widget.Toolbar>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="주변시설" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/sf_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIconTint="@color/black"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/black">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/sf_tab_Item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab1" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/sf_tab_Item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab2" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/sf_tab_Item3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tab3" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

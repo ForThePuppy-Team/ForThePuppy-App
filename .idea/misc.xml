@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_home.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_my_page.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_surrounding_facilties.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_walk.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/menu/chatting_toolbar.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/menu/home_toolbar.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/leesy/AndroidStudioProjects/ForThePuppy-App/forThePuppy/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.149" />
+      </map>
+    </option>
+  </component>
+</project>

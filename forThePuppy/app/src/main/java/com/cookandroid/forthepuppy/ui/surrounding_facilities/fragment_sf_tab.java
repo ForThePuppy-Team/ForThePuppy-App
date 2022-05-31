@@ -12,8 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.cookandroid.forthepuppy.R;
-import com.cookandroid.forthepuppy.model.category_search.Document;
-import com.cookandroid.forthepuppy.utils.CalDistance;
+import com.cookandroid.forthepuppy.model.kakao.category_search.Document;
 import com.cookandroid.forthepuppy.utils.sfUtils.ListViewAdapter;
 import com.cookandroid.forthepuppy.utils.sfUtils.SfTabItem;
 

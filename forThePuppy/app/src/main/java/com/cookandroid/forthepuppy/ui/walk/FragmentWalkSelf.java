@@ -28,6 +28,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.forthepuppy.R;
+import com.cookandroid.forthepuppy.api.ApiClientPuppy;
+import com.cookandroid.forthepuppy.api.ApiInterfacePuppy;
+import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.walk.PostWalkBody;
 import com.cookandroid.forthepuppy.utils.CalDistance;
 
 import net.daum.mf.map.api.MapPoint;
@@ -35,9 +39,15 @@ import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
     private Button mStartBtn, mStopBtn, mPauseBtn;
@@ -146,8 +156,19 @@ public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocatio
                 // 시작시간
                 date = new java.sql.Date(t);
                 startTime = new Time(t);
-                System.out.println(date);
-                System.out.println(startTime);
+//                System.out.println(date);
+//                System.out.println(startTime);
+                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    Date tt = fm.parse(date.toString());
+                    long ttt = tt.getTime();
+                    java.sql.Date tttt = new java.sql.Date(ttt);
+                    System.out.println(tttt);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
 
                 // 스톱워치
                 stoptime.setVisibility(View.GONE);
@@ -204,6 +225,31 @@ public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocatio
                 cnt = 1;
 
                 status = INIT;
+
+                // post
+                PostWalkBody postWalkBody = new PostWalkBody(date.toString(), 3, 1, 1, 1);
+
+                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call = apiInterfacePuppy.postWalkData("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk", postWalkBody);
+                call.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패", "실패");
+                            return;
+                        }
+
+//                        BasicResponse postWalk = response.body();
+//                        String content = "";
+//                        content += postWalk.getMessage();
+//                        Log.d("postwalkResult", content);
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

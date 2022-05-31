@@ -140,6 +140,7 @@ public class FragmentWalkDailyRecord extends Fragment {
         });
     }
 
+    // get 할 부분
     public void setWalkData() {
         // 임시 데이터
         Long l = System.currentTimeMillis();

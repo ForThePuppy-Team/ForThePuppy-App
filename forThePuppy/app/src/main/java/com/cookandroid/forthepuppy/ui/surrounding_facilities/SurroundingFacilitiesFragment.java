@@ -15,8 +15,8 @@ import com.cookandroid.forthepuppy.MainActivity;
 import com.cookandroid.forthepuppy.R;
 import com.cookandroid.forthepuppy.api.ApiClientKakao;
 import com.cookandroid.forthepuppy.api.ApiInterfaceKakao;
-import com.cookandroid.forthepuppy.model.category_search.CategoryResult;
-import com.cookandroid.forthepuppy.model.category_search.Document;
+import com.cookandroid.forthepuppy.model.kakao.category_search.CategoryResult;
+import com.cookandroid.forthepuppy.model.kakao.category_search.Document;
 import com.cookandroid.forthepuppy.utils.CalDistance;
 import com.google.android.material.tabs.TabLayout;
 

@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="홈"
+            android:text="테스트 페이지"
             android:layout_gravity="center"
             android:textColor="@color/mainColor"
             android:textSize="25dp"
@@ -30,10 +30,38 @@
         android:layout_height="2dp"
         android:background="@color/mainColor"/>
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="홈" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가족등록"
+            android:id="@+id/postFamilies"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가족계정 생성"
+            android:id="@+id/postFamiliesAccount"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가족삭제"
+            android:id="@+id/patchFamilies"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가족계정 삭제"
+            android:id="@+id/patchFamiliesAccount"/>
+    </LinearLayout>
+
 
 </LinearLayout>

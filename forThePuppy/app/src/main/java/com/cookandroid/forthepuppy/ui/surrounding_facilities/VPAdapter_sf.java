@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.cookandroid.forthepuppy.model.category_search.Document;
+import com.cookandroid.forthepuppy.model.kakao.category_search.Document;
 
 import java.util.ArrayList;
 import java.util.Collections;

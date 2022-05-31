@@ -1,7 +1,7 @@
 package com.cookandroid.forthepuppy.api;
 
-import com.cookandroid.forthepuppy.model.address_search.AddressSearch;
-import com.cookandroid.forthepuppy.model.category_search.CategoryResult;
+import com.cookandroid.forthepuppy.model.kakao.address_search.AddressSearch;
+import com.cookandroid.forthepuppy.model.kakao.category_search.CategoryResult;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

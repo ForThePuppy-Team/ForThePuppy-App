@@ -7,15 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.cookandroid.forthepuppy.MainActivity;
 import com.cookandroid.forthepuppy.R;
-import com.cookandroid.forthepuppy.model.category_search.Document;
-import com.cookandroid.forthepuppy.ui.surrounding_facilities.SurroundingFacilitiesFragment;
-import com.cookandroid.forthepuppy.utils.CalDistance;
-import com.cookandroid.forthepuppy.utils.walkUtils.WalkData;
-import com.cookandroid.forthepuppy.utils.walkUtils.WalkTab2Item;
+import com.cookandroid.forthepuppy.model.kakao.category_search.Document;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 

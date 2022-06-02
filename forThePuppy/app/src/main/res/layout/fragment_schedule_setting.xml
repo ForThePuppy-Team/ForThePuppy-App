@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10sp">
+
+    <TextView
+        android:id="@+id/date"
+        android:text="3월 23일"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:maxLength="20"
+        android:hint="알림 이름" />
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="반복" />
+    <RadioGroup
+        android:id="@+id/rdoRepeat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RadioButton
+            android:id="@+id/rdoNoRepeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="없음" />
+        <RadioButton
+            android:id="@+id/rdoDaily"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="매일" />
+        <RadioButton
+            android:id="@+id/rdoWeekly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="매주" />
+
+        <RadioButton
+            android:id="@+id/rdoMonthly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="매달" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="몇 분 전에 알릴까요?"/>
+
+    <RadioGroup
+        android:id="@+id/rdoNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/rdo5min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5" />
+
+        <RadioButton
+            android:id="@+id/rdo10min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10" />
+
+        <RadioButton
+            android:id="@+id/rdo15min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15" />
+
+        <RadioButton
+            android:id="@+id/rdo30min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30" />
+
+        <RadioButton
+            android:id="@+id/rdo60min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="저장하기" />
+</LinearLayout>

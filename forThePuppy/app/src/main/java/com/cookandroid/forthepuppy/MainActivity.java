@@ -12,15 +12,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.cookandroid.forthepuppy.ui.scheduleManager.ScheduleManagerFragment;
 import com.cookandroid.forthepuppy.ui.chatting.ChattingFragment;
-import com.cookandroid.forthepuppy.ui.home.HomeFragment;
+//import com.cookandroid.forthepuppy.ui.home.HomeFragment;
 import com.cookandroid.forthepuppy.ui.my_page.MyPageFragment;
 import com.cookandroid.forthepuppy.ui.surrounding_facilities.SurroundingFacilitiesFragment;
 import com.cookandroid.forthepuppy.ui.walk.WalkFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    HomeFragment homeFragment;
+    ScheduleManagerFragment scheduleManagerFragment;
     WalkFragment walkFragment;
     ChattingFragment chattingFragment;
     SurroundingFacilitiesFragment surroundingFacilitiesFragment;
@@ -44,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (!(getSupportFragmentManager().getFragments().get(0) instanceof HomeFragment)) {
+        if (!(getSupportFragmentManager().getFragments().get(0) instanceof ScheduleManagerFragment)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.containers,
-                    homeFragment).commit();
+                    scheduleManagerFragment).commit();
         } else {
             super.onBackPressed();
         }
@@ -83,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 화면들
-        homeFragment = new HomeFragment();
+        scheduleManagerFragment = new ScheduleManagerFragment();
 //        walkFragment = new WalkFragment();
 //        chattingFragment = new ChattingFragment();
 //        surroundingFacilitiesFragment = new SurroundingFacilitiesFragment();
 //        myPageFragment = new MyPageFragment();
 
-        fragmentManager.beginTransaction().replace(R.id.containers, homeFragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.containers, scheduleManagerFragment).commit();
 
         // 하단바
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -98,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        if (homeFragment == null) {
-                            homeFragment = new HomeFragment();
-                            fragmentManager.beginTransaction().add(R.id.containers, homeFragment).commit();
+                        if (scheduleManagerFragment == null) {
+                            scheduleManagerFragment = new ScheduleManagerFragment();
+                            fragmentManager.beginTransaction().add(R.id.containers, scheduleManagerFragment).commit();
                         }
-                        if (homeFragment != null)
-                            fragmentManager.beginTransaction().show(homeFragment).commit();
+                        if (scheduleManagerFragment != null)
+                            fragmentManager.beginTransaction().show(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
                         if (chattingFragment != null)
@@ -119,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
                             walkFragment = new WalkFragment();
                             fragmentManager.beginTransaction().add(R.id.containers, walkFragment).commit();
                         }
-                        if (homeFragment != null)
-                            fragmentManager.beginTransaction().hide(homeFragment).commit();
+                        if (scheduleManagerFragment != null)
+                            fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().show(walkFragment).commit();
                         if (chattingFragment != null)
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
                             chattingFragment = new ChattingFragment();
                             fragmentManager.beginTransaction().add(R.id.containers, chattingFragment).commit();
                         }
-                        if (homeFragment != null)
-                            fragmentManager.beginTransaction().hide(homeFragment).commit();
+                        if (scheduleManagerFragment != null)
+                            fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
                         if (chattingFragment != null)
@@ -153,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
                             surroundingFacilitiesFragment = new SurroundingFacilitiesFragment();
                             fragmentManager.beginTransaction().add(R.id.containers, surroundingFacilitiesFragment).commit();
                         }
-                        if (homeFragment != null)
-                            fragmentManager.beginTransaction().hide(homeFragment).commit();
+                        if (scheduleManagerFragment != null)
+                            fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
                         if (chattingFragment != null)
@@ -169,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
                             myPageFragment = new MyPageFragment();
                             fragmentManager.beginTransaction().add(R.id.containers, myPageFragment).commit();
                         }
-                        if (homeFragment != null)
-                            fragmentManager.beginTransaction().hide(homeFragment).commit();
+                        if (scheduleManagerFragment != null)
+                            fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
                         if (chattingFragment != null)

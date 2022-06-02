@@ -12,7 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.cookandroid.forthepuppy.model.puppy.chatting.ChatResult;
+import com.cookandroid.forthepuppy.ui.chatting.ChatCreateFragment;
 import com.cookandroid.forthepuppy.ui.chatting.ChattingFragment;
+import com.cookandroid.forthepuppy.ui.chatting.ChatListFragment;
+import com.cookandroid.forthepuppy.ui.chatting.ChattingListFragment;
 import com.cookandroid.forthepuppy.ui.home.HomeFragment;
 import com.cookandroid.forthepuppy.ui.my_page.MyPageFragment;
 import com.cookandroid.forthepuppy.ui.surrounding_facilities.SurroundingFacilitiesFragment;
@@ -20,11 +24,20 @@ import com.cookandroid.forthepuppy.ui.walk.WalkFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    int userIdx = 1;
+    int puppyIdx = 1;
+    String X_ACCESS_TOKEN = "eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM3MjE1NjIsImV4cCI6MTY1NTE5Mjc5MX0.pOEH_9Ejdv63Yn7_agRmzHqBOUgnzX2rTG4TbI7RWz4";
+
     HomeFragment homeFragment;
     WalkFragment walkFragment;
     ChattingFragment chattingFragment;
     SurroundingFacilitiesFragment surroundingFacilitiesFragment;
     MyPageFragment myPageFragment;
+
+    // 서브 프레그먼트
+    ChatCreateFragment chatCreateFragment;
+    ChatListFragment chatListFragment;
+    ChattingListFragment chattingListFragment;
 
     FragmentManager fragmentManager;
     LocationManager lm;
@@ -41,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static int t = 0;
+
+    public WalkFragment getWalkFragment() {
+        return walkFragment;
+    }
 
     @Override
     public void onBackPressed() {
@@ -96,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // 서브 화면들 있으면 제거
+                if (chatCreateFragment != null) {
+                    fragmentManager.beginTransaction().remove(chatCreateFragment).commit();
+                    chatCreateFragment = null;
+                }
+                if (chatListFragment != null) {
+                    fragmentManager.beginTransaction().remove(chatListFragment).commit();
+                    chatListFragment = null;
+                }
+                if (chattingListFragment != null) {
+                    fragmentManager.beginTransaction().remove(chattingListFragment).commit();
+                    chattingListFragment = null;
+                }
+
+
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         if (homeFragment == null) {
@@ -116,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_walk:
                         if (walkFragment == null) {
-                            walkFragment = new WalkFragment();
+                            walkFragment = new WalkFragment(userIdx,puppyIdx,X_ACCESS_TOKEN);
                             fragmentManager.beginTransaction().add(R.id.containers, walkFragment).commit();
                         }
                         if (homeFragment != null)
@@ -217,5 +249,37 @@ public class MainActivity extends AppCompatActivity {
             Log.d("test", "onStatusChanged, provider:" + provider + ", status:" + status + " ,Bundle:" + extras);
         }
     };
+
+    public void newChat(int senderIdx, int receiverIdx) {
+        if (chattingFragment != null)
+            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+        chatCreateFragment = new ChatCreateFragment(X_ACCESS_TOKEN,
+                senderIdx,receiverIdx);
+        fragmentManager.beginTransaction().add(R.id.containers, chatCreateFragment).show(chatCreateFragment).commit();
+    }
+
+    public void viewChangeChatting(){
+        if (chatCreateFragment != null) {
+            fragmentManager.beginTransaction().remove(chatCreateFragment).commit();
+            chatCreateFragment = null;
+        }
+        if (chattingFragment != null)
+            fragmentManager.beginTransaction().show(chattingFragment).commit();
+    }
+
+    public void chattingInventory() {
+        if (chattingFragment != null)
+            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+        chatListFragment = new ChatListFragment(1, X_ACCESS_TOKEN);
+        fragmentManager.beginTransaction().add(R.id.containers, chatListFragment).show(chatListFragment).commit();
+
+    }
+
+    public void chattingRoom(ChatResult chatResult, int userIdx) {
+        if (chatListFragment != null)
+            fragmentManager.beginTransaction().hide(chatListFragment).commit();
+        chattingListFragment = new ChattingListFragment(chatResult, X_ACCESS_TOKEN, userIdx);
+        fragmentManager.beginTransaction().add(R.id.containers, chattingListFragment).show(chattingListFragment).commit();
+    }
 
 }

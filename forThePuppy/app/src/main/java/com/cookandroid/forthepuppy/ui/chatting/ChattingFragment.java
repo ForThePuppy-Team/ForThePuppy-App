@@ -6,19 +6,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.cookandroid.forthepuppy.MainActivity;
 import com.cookandroid.forthepuppy.R;
 
 public class ChattingFragment extends Fragment {
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -35,6 +34,13 @@ public class ChattingFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         activity.setSupportActionBar(toolbar);
 
+        Button test = (Button) view.findViewById(R.id.test);
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).newChat(1,2);
+            }
+        });
         return view;
     }
 
@@ -50,7 +56,7 @@ public class ChattingFragment extends Fragment {
         int id = item.getItemId();
 
         if (item.getItemId() == R.id.chattingSettings) {
-            Log.i("ss","ss");
+            ((MainActivity)getActivity()).chattingInventory();
             return true;
         }
         return super.onOptionsItemSelected(item);

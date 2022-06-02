@@ -5,13 +5,13 @@ import java.sql.Time;
 
 public class WalkData {
     private Date date;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
     private Double totalDistance;
     private long totalTime; // 테이블에서 수정 필요 double임
     private String location; // 이건 안쓸거같은...
 
-    public WalkData(Date date, Time startTime, Time endTime, Double totalDistance, long totalTime) {
+    public WalkData(Date date, String startTime, String endTime, Double totalDistance, long totalTime) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -19,7 +19,7 @@ public class WalkData {
         this.totalTime = totalTime;
     }
 
-    public WalkData(Date date, Time startTime, Time endTime, Double totalDistance, long totalTime, String location) {
+    public WalkData(Date date, String startTime, String endTime, Double totalDistance, long totalTime, String location) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -36,19 +36,19 @@ public class WalkData {
         this.date = date;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClientPuppy {
-    private static final String BASE_URL = "https://yenie.shop/";
+    private static final String BASE_URL = "https://yenie.shop";
     private static Retrofit retrofit;
 
     public static Retrofit getApiClient(){

@@ -78,8 +78,8 @@ public class ListViewAdapter extends BaseAdapter {
         item.setDate(dateFormat.format(walkData.getDate()));
 
         SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
-        item.setTime(dateFormat2.format(walkData.getStartTime())+"~"+dateFormat2.format(walkData.getEndTime()));
-
+//        item.setTime(dateFormat2.format(walkData.getStartTime())+"~"+dateFormat2.format(walkData.getEndTime()));
+        item.setTime(walkData.getStartTime().substring(0,walkData.getStartTime().length() -3)+"~"+walkData.getEndTime().substring(0,walkData.getEndTime().length() -3));
         item.setKm(walkData.getTotalDistance().toString()+"km");
 
         long h = walkData.getTotalTime() / 1000 / 360;

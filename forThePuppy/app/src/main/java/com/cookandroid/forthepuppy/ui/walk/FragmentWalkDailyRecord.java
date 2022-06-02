@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,28 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 
 import com.cookandroid.forthepuppy.R;
+import com.cookandroid.forthepuppy.api.ApiClientPuppy;
+import com.cookandroid.forthepuppy.api.ApiInterfacePuppy;
+import com.cookandroid.forthepuppy.model.kakao.category_search.Document;
+import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.walk.WalkResponse;
+import com.cookandroid.forthepuppy.model.puppy.walk.WalkResult;
+import com.cookandroid.forthepuppy.utils.CalDistance;
 import com.cookandroid.forthepuppy.utils.walkUtils.ListViewAdapter;
 import com.cookandroid.forthepuppy.utils.walkUtils.WalkData;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentWalkDailyRecord extends Fragment {
     View view;
@@ -58,6 +72,14 @@ public class FragmentWalkDailyRecord extends Fragment {
 
     AlertDialog ad;
 
+    //get 인덱스
+    int userIdx = 1;
+
+    String X_ACCESS_TOKEN;
+
+    public FragmentWalkDailyRecord(String x_ACCESS_TOKEN) {
+        X_ACCESS_TOKEN = x_ACCESS_TOKEN;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +90,6 @@ public class FragmentWalkDailyRecord extends Fragment {
         InitializeView();
         SetListener();
         setWalkData();
-        setListview(Integer.parseInt(year)-1900, Integer.parseInt(month)-1);
         return view;
     }
 
@@ -142,32 +163,43 @@ public class FragmentWalkDailyRecord extends Fragment {
 
     // get 할 부분
     public void setWalkData() {
-        // 임시 데이터
-        Long l = System.currentTimeMillis();
-        Date date1 = new Date(l);
-        long t = date1.getTime();
-        java.sql.Date date = new java.sql.Date(t);
-        Time startTime = new Time(t);
-        Time endTime = new Time(t);
-        double totalDistance = 1561.1;
-        long totalTime = 156165;
+    //  get
+        ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+        Call<WalkResponse> call = apiInterfacePuppy.getWalkData(X_ACCESS_TOKEN, userIdx);
+        call.enqueue(new Callback<WalkResponse>(){
 
-        WalkData w1 = new WalkData(date,startTime,endTime,totalDistance,totalTime);
-        l -= 1561651665;
-        date1 = new Date(l);
-        t = date1.getTime();
-        date = new java.sql.Date(t);
-        totalDistance = 61.1;
-        totalTime = 561165;
-        WalkData w2 = new WalkData(date,startTime,endTime,totalDistance,totalTime);
+            @Override
+            public void onResponse(Call<WalkResponse> call, Response<WalkResponse> response) {
+                if (!response.isSuccessful()) {
+                    Log.d("실패", response.toString());
+                    return;
+                }
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    List<WalkResult> list = response.body().getWalkResults();
+                    allItem.clear();
+                    for (WalkResult w : list){
+                        SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date temp = fm.parse(w.getDate());
+                            long tempTime = temp.getTime();
+                            java.sql.Date date = new java.sql.Date(tempTime);
+                            WalkData walkData = new WalkData(date,w.getStartTime(),w.getEndTime(),w.getTotalDistance(),w.getTotalTime());
+                            allItem.add(walkData);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    setListview(Integer.parseInt(year)-1900, Integer.parseInt(month)-1);
+                }
+                Log.d("getWalk",response.body().getMessage());
+            }
 
-        totalDistance = 561.1;
-        totalTime = 815605;
-        WalkData w3 = new WalkData(date,startTime,endTime,totalDistance,totalTime);
+            @Override
+            public void onFailure(Call<WalkResponse> call, Throwable t) {
 
-        allItem.add(w1);
-        allItem.add(w2);
-        allItem.add(w3);
+            }
+        });
     }
 
     public void setListview(int y, int m) {

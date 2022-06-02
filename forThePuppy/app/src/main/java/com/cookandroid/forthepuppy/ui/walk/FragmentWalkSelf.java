@@ -27,6 +27,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.forthepuppy.MainActivity;
 import com.cookandroid.forthepuppy.R;
 import com.cookandroid.forthepuppy.api.ApiClientPuppy;
 import com.cookandroid.forthepuppy.api.ApiInterfacePuppy;
@@ -93,6 +94,18 @@ public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocatio
     MapPolyline currentPolyline;
     List<MapPolyline> tempPolyline = new ArrayList<>();
     int polylineColer;
+
+    //post 인덱스
+    int userIdx;
+    int puppyIdx;
+    String X_ACCESS_TOKEN;
+
+    public FragmentWalkSelf(int userIdx, int puppyIdx, String x_ACCESS_TOKEN) {
+        this.userIdx = userIdx;
+        this.puppyIdx = puppyIdx;
+        X_ACCESS_TOKEN = x_ACCESS_TOKEN;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -156,19 +169,6 @@ public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocatio
                 // 시작시간
                 date = new java.sql.Date(t);
                 startTime = new Time(t);
-//                System.out.println(date);
-//                System.out.println(startTime);
-                SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    Date tt = fm.parse(date.toString());
-                    long ttt = tt.getTime();
-                    java.sql.Date tttt = new java.sql.Date(ttt);
-                    System.out.println(tttt);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
 
                 // 스톱워치
                 stoptime.setVisibility(View.GONE);
@@ -227,22 +227,24 @@ public class FragmentWalkSelf extends Fragment implements MapView.CurrentLocatio
                 status = INIT;
 
                 // post
-                PostWalkBody postWalkBody = new PostWalkBody(date.toString(), 3, 1, 1, 1);
+                PostWalkBody postWalkBody = new PostWalkBody(date.toString(), startTime.toString(),endTime.toString(),totalDistance, totalTime, userIdx, puppyIdx);
 
                 ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
-                Call<BasicResponse> call = apiInterfacePuppy.postWalkData("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk", postWalkBody);
+                Call<BasicResponse> call = apiInterfacePuppy.postWalkData(X_ACCESS_TOKEN, postWalkBody);
                 call.enqueue(new Callback<BasicResponse>() {
                     @Override
                     public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
                         if (!response.isSuccessful()) {
-                            Log.d("실패", "실패");
+                            Log.d("실패", response.toString());
                             return;
                         }
 
-//                        BasicResponse postWalk = response.body();
-//                        String content = "";
-//                        content += postWalk.getMessage();
-//                        Log.d("postwalkResult", content);
+                        BasicResponse postWalk = response.body();
+                        String content = "";
+                        content += postWalk.getMessage();
+                        Log.d("postwalk", postWalk.getMessage());
+
+                        ((MainActivity)getActivity()).getWalkFragment().refreshDailyList();
                     }
 
                     @Override

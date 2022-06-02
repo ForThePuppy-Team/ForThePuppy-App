@@ -1,16 +1,20 @@
 package com.cookandroid.forthepuppy.api;
 
 import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.chatting.ChatResponse;
+import com.cookandroid.forthepuppy.model.puppy.chatting.ChattingResponse;
+import com.cookandroid.forthepuppy.model.puppy.chatting.PostChatBody;
+import com.cookandroid.forthepuppy.model.puppy.chatting.PostChattingBody;
 import com.cookandroid.forthepuppy.model.puppy.walk.PostWalkBody;
+import com.cookandroid.forthepuppy.model.puppy.walk.WalkResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface ApiInterfacePuppy {
 
@@ -26,9 +30,46 @@ public interface ApiInterfacePuppy {
     Call<BasicResponse> postWalkData(
             @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
             @Body PostWalkBody postWalkBody
-            );
+    );
 
-    // 가족등록
+    //산책정보 조회
+    @GET("/walks/{userIdx}")
+    Call<WalkResponse> getWalkData(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Path("userIdx") int userIdx
+    );
+
+    //채팅방 생성성
+    @POST("/chats")
+    Call<BasicResponse> postChats(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Body PostChatBody postChatBody
+    );
+
+    //채팅목록조회
+    @GET("/chats/{userIdx}")
+    Call<ChatResponse> getChatList(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Path("userIdx") int userIdx
+    );
+
+    //채팅내역조회
+    @GET("/chats/{userIdx}/{roomIdx}")
+    Call<ChattingResponse> getChattingList(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Path("userIdx") int userIdx,
+            @Path("roomIdx") int roomIdx
+    );
+
+    //채팅 메시지 생성
+    @POST("/chats/{roomIdx}/message")
+    Call<BasicResponse> postChatting(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Body PostChattingBody postChattingBody,
+            @Path("roomIdx") int roomIdx
+    );
+
+   // 가족등록
     @POST("/families/{idx}/{userIdx}")
     Call<BasicResponse> postFamilies(
             @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,

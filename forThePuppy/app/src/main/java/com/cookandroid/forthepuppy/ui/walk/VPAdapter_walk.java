@@ -11,12 +11,12 @@ public class VPAdapter_walk extends FragmentPagerAdapter {
     private ArrayList<Fragment> items;
     private ArrayList<String> itext = new ArrayList<>();
 
-    public VPAdapter_walk(FragmentManager fm){
+    public VPAdapter_walk(FragmentManager fm, int userIdx, int puppyIdx, String X_ACCESS_TOKEN){
         super(fm);
         items = new ArrayList<>();
-        items.add(new FragmentWalkSelf());
+        items.add(new FragmentWalkSelf(userIdx, puppyIdx, X_ACCESS_TOKEN));
         items.add(new FragmentWalkSubstitute());
-        items.add(new FragmentWalkDailyRecord());
+        items.add(new FragmentWalkDailyRecord(X_ACCESS_TOKEN));
 
         itext.add("산책하기");
         itext.add("대리산책");
@@ -38,4 +38,14 @@ public class VPAdapter_walk extends FragmentPagerAdapter {
     public int getCount() {
         return items.size();
     }
+    
+    // 새 산책이 등록되면 일지 갱신
+    public void refreshDailyList(){
+        for (Fragment i : items){
+            if (i instanceof FragmentWalkDailyRecord){
+                ((FragmentWalkDailyRecord) i).setWalkData();
+            }
+        }
+    }
+    
 }

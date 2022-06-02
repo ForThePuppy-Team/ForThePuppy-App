@@ -30,9 +30,30 @@
         <entry key="..\:/Users/khc51/Desktop/ForThePuppy-App/forThePuppy/app/src/main/res/layout/year_month_picker.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/drawable/ic_baseline_forum_24.xml" value="0.2005" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2005" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/drawable/letf_mss.xml" value="0.3075" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/activity_main.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chat_create.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chat_list.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chat_list_item.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting_inventory.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting_inventory_item.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting_list.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_chatting_list_item.xml" value="0.30416666666666664" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_community.xml" value="0.30625" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_home.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_my_page.xml" value="0.14893617021276595" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_sf.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_sf_tab.xml" value="0.30625" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_sf_tab_item.xml" value="0.3026041666666667" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_walk.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_walk_daily_record.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_walk_daily_record_item.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/fragment_walk_self.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/layout/year_month_picker.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/menu/bottom_nav_menu.xml" value="0.30625" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/menu/chatting_toolbar.xml" value="0.2361111111111111" />
+        <entry key="..\:/Users/khc51/Desktop/forThePuppy-App/forThePuppy/app/src/main/res/menu/home_toolbar.xml" value="0.30625" />
         <entry key="..\:/Users/khc51/Desktop/forThePuppy/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.2005" />
         <entry key="..\:/Users/khc51/Desktop/team project/ForThePuppy-App/forThePuppy/app/src/main/res/drawable/button_round.xml" value="0.2595" />
         <entry key="..\:/Users/khc51/Desktop/team project/ForThePuppy-App/forThePuppy/app/src/main/res/drawable/ic_baseline_forum_24.xml" value="0.247" />

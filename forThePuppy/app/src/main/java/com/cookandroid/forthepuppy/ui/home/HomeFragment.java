@@ -43,12 +43,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
-                Call<BasicResponse> call = apiInterfacePuppy.postFamilies("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk", 2, 1);
+                Call<BasicResponse> call = apiInterfacePuppy.postFamilies("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTQwODIzODYsImV4cCI6MTY1NTU1MzYxNX0.L1y5KPr2YOWyUqzuB-YaKZFMGcgs3yRYCCXKzyIuOEc", 2, 1);
                 call.enqueue(new Callback<BasicResponse>() {
                     @Override
                     public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
                         if (!response.isSuccessful()) {
-                            Log.d("실패", "실패");
+                            Log.d("실패",  response.toString());
                             return;
                         }
 
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
                         if (!response.isSuccessful()) {
-                            Log.d("실패", "실패");
+                            Log.d("실패",  response.toString());
                             return;
                         }
 
@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
                         if (!response.isSuccessful()) {
-                            Log.d("실패", "실패");
+                            Log.d("실패",  response.toString());
                             return;
                         }
 
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
                         if (!response.isSuccessful()) {
-                            Log.d("실패", "실패");
+                            Log.d("실패",  response.toString());
                             return;
                         }
 

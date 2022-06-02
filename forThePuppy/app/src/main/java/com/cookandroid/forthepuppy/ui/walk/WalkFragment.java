@@ -16,6 +16,17 @@ import com.cookandroid.forthepuppy.ui.surrounding_facilities.VPAdapter_sf;
 import com.google.android.material.tabs.TabLayout;
 
 public class WalkFragment extends Fragment {
+    VPAdapter_walk adapter;
+
+    int userIdx;
+    int puppyIdx;
+    String X_ACCESS_TOKEN;
+
+    public WalkFragment(int userIdx, int puppyIdx, String x_ACCESS_TOKEN) {
+        this.userIdx = userIdx;
+        this.puppyIdx = puppyIdx;
+        X_ACCESS_TOKEN = x_ACCESS_TOKEN;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +39,7 @@ public class WalkFragment extends Fragment {
         activity.setSupportActionBar(toolbar);
 
         ViewPager vp = (ViewPager) view.findViewById(R.id.viewpager_walk);
-        VPAdapter_walk adapter = new VPAdapter_walk(getActivity().getSupportFragmentManager());
+        adapter = new VPAdapter_walk(getActivity().getSupportFragmentManager(),userIdx,puppyIdx,X_ACCESS_TOKEN);
         vp.setAdapter(adapter);
         vp.setOffscreenPageLimit(3); // fragment 상태유지 하는 개수
 
@@ -37,5 +48,9 @@ public class WalkFragment extends Fragment {
         tab.setupWithViewPager(vp);
 
         return view;
+    }
+
+    public void refreshDailyList(){
+        adapter.refreshDailyList();
     }
 }

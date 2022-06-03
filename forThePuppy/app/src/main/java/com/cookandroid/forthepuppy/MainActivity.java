@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.cookandroid.forthepuppy.ui.community.CommunityFragment;
 import com.cookandroid.forthepuppy.ui.scheduleManager.ScheduleManagerFragment;
 import com.cookandroid.forthepuppy.ui.chatting.ChattingFragment;
 //import com.cookandroid.forthepuppy.ui.home.HomeFragment;
@@ -23,7 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     ScheduleManagerFragment scheduleManagerFragment;
     WalkFragment walkFragment;
-    ChattingFragment chattingFragment;
+    CommunityFragment communityFragment;
     SurroundingFacilitiesFragment surroundingFacilitiesFragment;
     MyPageFragment myPageFragment;
 
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         if (!(getSupportFragmentManager().getFragments().get(0) instanceof ScheduleManagerFragment)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.containers,
                     scheduleManagerFragment).commit();
+        } else if(!(scheduleManagerFragment.isHidden()) && (scheduleManagerFragment.getChildFragmentManager().findFragmentByTag("sch_view"))!=null) {
+            scheduleManagerFragment.getChildFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
@@ -107,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                             fragmentManager.beginTransaction().show(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
-                        if (chattingFragment != null)
-                            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+                        if (communityFragment != null)
+                            fragmentManager.beginTransaction().hide(communityFragment).commit();
                         if (surroundingFacilitiesFragment != null)
                             fragmentManager.beginTransaction().hide(surroundingFacilitiesFragment).commit();
                         if (myPageFragment != null)
@@ -124,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
                             fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().show(walkFragment).commit();
-                        if (chattingFragment != null)
-                            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+                        if (communityFragment != null)
+                            fragmentManager.beginTransaction().hide(communityFragment).commit();
                         if (surroundingFacilitiesFragment != null)
                             fragmentManager.beginTransaction().hide(surroundingFacilitiesFragment).commit();
                         if (myPageFragment != null)
@@ -134,16 +137,16 @@ public class MainActivity extends AppCompatActivity {
 
                         return true;
                     case R.id.navigation_chatting:
-                        if (chattingFragment == null) {
-                            chattingFragment = new ChattingFragment();
-                            fragmentManager.beginTransaction().add(R.id.containers, chattingFragment).commit();
+                        if (communityFragment == null) {
+                            communityFragment = new CommunityFragment();
+                            fragmentManager.beginTransaction().add(R.id.containers, communityFragment).commit();
                         }
                         if (scheduleManagerFragment != null)
                             fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
-                        if (chattingFragment != null)
-                            fragmentManager.beginTransaction().show(chattingFragment).commit();
+                        if (communityFragment != null)
+                            fragmentManager.beginTransaction().show(communityFragment).commit();
                         if (surroundingFacilitiesFragment != null)
                             fragmentManager.beginTransaction().hide(surroundingFacilitiesFragment).commit();
                         if (myPageFragment != null)
@@ -158,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
                             fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
-                        if (chattingFragment != null)
-                            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+                        if (communityFragment != null)
+                            fragmentManager.beginTransaction().hide(communityFragment).commit();
                         if (surroundingFacilitiesFragment != null)
                             fragmentManager.beginTransaction().show(surroundingFacilitiesFragment).commit();
                         if (myPageFragment != null)
@@ -174,8 +177,8 @@ public class MainActivity extends AppCompatActivity {
                             fragmentManager.beginTransaction().hide(scheduleManagerFragment).commit();
                         if (walkFragment != null)
                             fragmentManager.beginTransaction().hide(walkFragment).commit();
-                        if (chattingFragment != null)
-                            fragmentManager.beginTransaction().hide(chattingFragment).commit();
+                        if (communityFragment != null)
+                            fragmentManager.beginTransaction().hide(communityFragment).commit();
                         if (surroundingFacilitiesFragment != null)
                             fragmentManager.beginTransaction().hide(surroundingFacilitiesFragment).commit();
                         if (myPageFragment != null)

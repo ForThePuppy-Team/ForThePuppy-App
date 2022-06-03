@@ -32,11 +32,11 @@ public class ScheduleManagerFragment extends Fragment implements CalendarFragmen
         Log.d("log_fragment", "스케줄매니저 프래그먼트 생성");
         View v = inflater.inflate(R.layout.fragment_schedule_manager, container, false);
 
-        FragmentTransaction tx = getChildFragmentManager().beginTransaction();
         calendarFragment = new CalendarFragment();
-        tx.replace(R.id.frame_calendar, calendarFragment);
-        tx.addToBackStack(null);
-        tx.commit();
+        getChildFragmentManager().beginTransaction()
+        .replace(R.id.frame_calendar, calendarFragment)
+        .addToBackStack(null)
+        .commit();
 
         return v;
     }
@@ -44,12 +44,12 @@ public class ScheduleManagerFragment extends Fragment implements CalendarFragmen
     @Override
     public void onDateSent(Bundle b) {
         // scheduleViewFragment 에 날짜정보를 보내고 일정화면 열기
-        FragmentTransaction tx = getChildFragmentManager().beginTransaction();
         scheduleViewFragment = new ScheduleViewFragment();
         scheduleViewFragment.setArguments(b);
-        tx.replace(R.id.frame_calendar, scheduleViewFragment, "sch_view");
-        tx.addToBackStack(null);
-        tx.commit();
+        getChildFragmentManager().beginTransaction()
+        .replace(R.id.frame_calendar, scheduleViewFragment, "sch_view")
+        .addToBackStack(null)
+        .commit();
     }
 
     @Override
@@ -60,12 +60,12 @@ public class ScheduleManagerFragment extends Fragment implements CalendarFragmen
 
     @Override
     public void onAddSent(Bundle b) {
-        FragmentTransaction tx = getChildFragmentManager().beginTransaction();
         scheduleSettingFragment = new ScheduleSettingFragment();
         scheduleSettingFragment.setArguments(b);
-        tx.replace(R.id.frame_calendar, scheduleSettingFragment);
-        tx.addToBackStack(null);
-        tx.commit();
+        getChildFragmentManager().beginTransaction()
+        .replace(R.id.frame_calendar, scheduleSettingFragment)
+        .addToBackStack(null)
+        .commit();
     }
 
 }

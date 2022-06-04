@@ -19,6 +19,8 @@ import com.cookandroid.forthepuppy.R;
 import com.cookandroid.forthepuppy.api.ApiClientPuppy;
 import com.cookandroid.forthepuppy.api.ApiInterfacePuppy;
 import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.calendars.CalendarsResponse;
+import com.cookandroid.forthepuppy.model.puppy.calendars.PostCalendars;
 import com.cookandroid.forthepuppy.model.puppy.posts.PostPostsBody;
 import com.cookandroid.forthepuppy.model.puppy.posts.PostsAllResponse;
 import com.cookandroid.forthepuppy.model.puppy.posts.PostsChangeBody;
@@ -152,8 +154,73 @@ public class HomeFragment extends Fragment {
         testApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //일정등록
+/*                PostCalendars postCalendars = new PostCalendars("밥시간","밥시간","2022-02-02","2022-02-02",
+                       "22:22:00","22:22:00",1,2,"0",1 );
+                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call8 = apiInterfacePuppy.postCalendars("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk",
+                        postCalendars);
+                call8.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
 
-                // 게시글 등록
+                        BasicResponse postPosts = response.body();
+                        Log.d("postCalendars", postPosts.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+
+                    }
+                });*/
+
+                // 특정날짜 조회
+/*                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<CalendarsResponse> call8 = apiInterfacePuppy.getCalendars("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk",3,1);
+                call8.enqueue(new Callback<CalendarsResponse>() {
+                    @Override
+                    public void onResponse(Call<CalendarsResponse> call, Response<CalendarsResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
+
+                        CalendarsResponse getCalendar = response.body();
+                        Log.d("postCalendars", getCalendar.getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Call<CalendarsResponse> call, Throwable t) {
+                        Log.d("postCalendars실패",  "onFailure");
+                    }
+                });*/
+
+                // 일정삭제
+                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call8 = apiInterfacePuppy.patchCalendars("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM3MjE1NjIsImV4cCI6MTY1NTE5Mjc5MX0.pOEH_9Ejdv63Yn7_agRmzHqBOUgnzX2rTG4TbI7RWz4",1,1);
+                call8.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
+
+                        BasicResponse patchCalendars = response.body();
+                        Log.d("patchCalendars", patchCalendars.getMessage());
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+                        Log.d("patchCalendars실패",  "onFailure");
+                    }
+                });
+
+      /*          // 게시글 등록
                 PostPostsBody postPostsBody = new PostPostsBody("대리산책자 구해요", "자세한내용은 메세지로 얘기해요", 1, 1);
 
                 ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
@@ -265,7 +332,9 @@ public class HomeFragment extends Fragment {
                     public void onFailure(Call<BasicResponse> call, Throwable t) {
                         Log.d("postPostsChange실패",  "onFailure");
                     }
-                });
+                });*/
+
+
 
             }
        });

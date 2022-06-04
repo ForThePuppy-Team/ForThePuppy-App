@@ -1,6 +1,8 @@
 package com.cookandroid.forthepuppy.api;
 
 import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.calendars.CalendarsResponse;
+import com.cookandroid.forthepuppy.model.puppy.calendars.PostCalendars;
 import com.cookandroid.forthepuppy.model.puppy.chatting.ChatResponse;
 import com.cookandroid.forthepuppy.model.puppy.chatting.ChattingResponse;
 import com.cookandroid.forthepuppy.model.puppy.chatting.PostChatBody;
@@ -75,9 +77,30 @@ public interface ApiInterfacePuppy {
     );
 
     /*
-     * 일정정
+     * 일정
      */
+    //일정 등록
+    @POST("/calendars")
+    Call<BasicResponse> postCalendars(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Body PostCalendars postCalendars
+    );
 
+    // 특정 날짜 일정 조회
+    @GET("/calendars/{idx}/{userIdx}")
+    Call<CalendarsResponse> getCalendars(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Path("idx") int idx,
+            @Path("userIdx") int userIdx
+    );
+
+    // 일정삭제
+    @PATCH("/calendars/{idx}/{userIdx}/status")
+    Call<BasicResponse> patchCalendars(
+            @Header("X-ACCESS-TOKEN") String X_ACCESS_TOKEN,
+            @Path("idx") int idx,
+            @Path("userIdx") int userIdx
+    );
 
 
     /*

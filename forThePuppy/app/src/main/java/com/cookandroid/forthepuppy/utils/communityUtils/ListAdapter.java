@@ -43,8 +43,8 @@ public class ListAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addItem(String title) {
-        CommunityListItem item = new CommunityListItem(title);
+    public void addItem(String title, String body) {
+        CommunityListItem item = new CommunityListItem(title, body);
         listItems.add(listItems.size(), item);
         notifyDataSetChanged();
     }

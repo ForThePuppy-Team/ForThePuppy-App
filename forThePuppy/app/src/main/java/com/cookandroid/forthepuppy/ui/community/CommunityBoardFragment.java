@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -19,14 +20,26 @@ import com.cookandroid.forthepuppy.utils.communityUtils.ListAdapter;
 import java.util.List;
 
 public class CommunityBoardFragment extends Fragment {
+    private CommunityBoardFragmentListener listener = null;
+
     private ListView postList;
     private Button btnNewPost;
     private List<CommunityListItem> listItems;
     private ListAdapter adapter = new ListAdapter();
 
+    public interface CommunityBoardFragmentListener {
+        void onNewPostSent();
+        void onReadPostSent(CommunityListItem c);
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
+        if(getParentFragment() instanceof CommunityBoardFragmentListener) {
+            listener = (CommunityBoardFragmentListener) getParentFragment();
+        } else {
+            throw new RuntimeException(getParentFragment().toString() + "must implement CommunityBoardListener");
+        }
     }
 
     @Override
@@ -43,13 +56,25 @@ public class CommunityBoardFragment extends Fragment {
 
         postList.setAdapter(adapter);
 
+        postList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CommunityListItem item = (CommunityListItem) adapterView.getItemAtPosition(i);
+                listener.onReadPostSent(item);
+            }
+        });
+
         btnNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //todo
-                // 글쓰기 화면으로 이동
+                listener.onNewPostSent();
             }
         });
         return v;
     }
+
+    public void addPost(String title, String body){
+        adapter.addItem(title, body);
+    }
+
 }

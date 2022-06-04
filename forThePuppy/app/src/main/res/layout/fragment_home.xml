@@ -61,6 +61,12 @@
             android:layout_height="wrap_content"
             android:text="가족계정 삭제"
             android:id="@+id/patchFamiliesAccount"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="테스트"
+            android:id="@+id/testApi"/>
     </LinearLayout>
 
 

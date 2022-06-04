@@ -73,12 +73,13 @@ public class FragmentWalkDailyRecord extends Fragment {
     AlertDialog ad;
 
     //get 인덱스
-    int userIdx = 1;
+    int userIdx;
 
     String X_ACCESS_TOKEN;
 
-    public FragmentWalkDailyRecord(String x_ACCESS_TOKEN) {
-        X_ACCESS_TOKEN = x_ACCESS_TOKEN;
+    public FragmentWalkDailyRecord(String x_ACCESS_TOKEN, int userIdx) {
+        this.X_ACCESS_TOKEN = x_ACCESS_TOKEN;
+        this.userIdx = userIdx;
     }
 
     @Override

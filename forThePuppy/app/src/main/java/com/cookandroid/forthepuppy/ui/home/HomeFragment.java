@@ -19,6 +19,10 @@ import com.cookandroid.forthepuppy.R;
 import com.cookandroid.forthepuppy.api.ApiClientPuppy;
 import com.cookandroid.forthepuppy.api.ApiInterfacePuppy;
 import com.cookandroid.forthepuppy.model.puppy.BasicResponse;
+import com.cookandroid.forthepuppy.model.puppy.posts.PostPostsBody;
+import com.cookandroid.forthepuppy.model.puppy.posts.PostsAllResponse;
+import com.cookandroid.forthepuppy.model.puppy.posts.PostsChangeBody;
+import com.cookandroid.forthepuppy.model.puppy.posts.PostsResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -143,6 +147,128 @@ public class HomeFragment extends Fragment {
                 });
             }
         });
+
+        Button testApi = (Button) view.findViewById(R.id.testApi);
+        testApi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // 게시글 등록
+                PostPostsBody postPostsBody = new PostPostsBody("대리산책자 구해요", "자세한내용은 메세지로 얘기해요", 1, 1);
+
+                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call8 = apiInterfacePuppy.postPosts("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk",
+                        postPostsBody);
+                call8.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
+
+                        BasicResponse postPosts = response.body();
+                        Log.d("postPosts", postPosts.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+
+                    }
+                });
+
+                // 전체 게시글 조회
+//                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<PostsAllResponse> call4 = apiInterfacePuppy.getPostsAll("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk", 1,"역북동");
+                call4.enqueue(new Callback<PostsAllResponse>() {
+
+                    @Override
+                    public void onResponse(Call<PostsAllResponse> call, Response<PostsAllResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
+
+                        PostsAllResponse postsAllResponse = response.body();
+//                        PostsResult postsResult = postsResponse.getPostsResults().get(0); //내용물이 없어서.. 게시글 넣은 뒤에 가능
+                        Log.d("getPosts", postsAllResponse.getMessage() + "\n");
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostsAllResponse> call, Throwable t) {
+
+                    }
+                });
+
+                // 게시글 조회
+//                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<PostsResponse> call = apiInterfacePuppy.getPosts("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk", 1,1);
+                call.enqueue(new Callback<PostsResponse>() {
+
+                    @Override
+                    public void onResponse(Call<PostsResponse> call, Response<PostsResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("실패",  response.toString());
+                            return;
+                        }
+
+                        PostsResponse postsResponse = response.body();
+//                        PostsResult postsResult = postsResponse.getPostsResults().get(0); //내용물이 없어서.. 게시글 넣은 뒤에 가능
+                        Log.d("getPosts", postsResponse.getMessage() + "\n");
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostsResponse> call, Throwable t) {
+
+                    }
+                });
+
+                // 게시글 삭제 // 왜인지 서버꺼있을때 오는 onFailure로 응답이 와서 안됨
+//                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call2 = apiInterfacePuppy.patchPosts("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM3MjE1NjIsImV4cCI6MTY1NTE5Mjc5MX0.pOEH_9Ejdv63Yn7_agRmzHqBOUgnzX2rTG4TbI7RWz4", 1,1);
+                call2.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("patchPosts실패",  response.toString());
+                            return;
+                        }
+
+                        BasicResponse b = response.body();
+//                        PostsResult postsResult = postsResponse.getPostsResults().get(0); //내용물이 없어서.. 게시글 넣은 뒤에 가능
+                        Log.d("patchPosts", b.getMessage() + "\n");
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+                        Log.d("patchPosts실패",  "onFailure");
+                    }
+                });
+
+                // 게시글 수정
+               PostsChangeBody postsChangeBody = new PostsChangeBody("hi","hiu");
+//                ApiInterfacePuppy apiInterfacePuppy = ApiClientPuppy.getApiClient().create(ApiInterfacePuppy.class);
+                Call<BasicResponse> call3 = apiInterfacePuppy.postPostsChange("eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWR4IjoxLCJpYXQiOjE2NTM2MjQ0MzAsImV4cCI6MTY1NTA5NTY1OX0.ZiDhOe9bf6dOXCZyWVFPro7FOJ91iIl7XRdFtOz-6Lk",1,1, postsChangeBody);
+                call3.enqueue(new Callback<BasicResponse>() {
+                    @Override
+                    public void onResponse(Call<BasicResponse> call, Response<BasicResponse> response) {
+                        if (!response.isSuccessful()) {
+                            Log.d("postPostsChange실패",  response.toString());
+                            return;
+                        }
+
+                        BasicResponse postPosts = response.body();
+                        Log.d("postPostsChange", postPosts.toString());
+                    }
+
+                    @Override
+                    public void onFailure(Call<BasicResponse> call, Throwable t) {
+                        Log.d("postPostsChange실패",  "onFailure");
+                    }
+                });
+
+            }
+       });
         return view;
     }
 

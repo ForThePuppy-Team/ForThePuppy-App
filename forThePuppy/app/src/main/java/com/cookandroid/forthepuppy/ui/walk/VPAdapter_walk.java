@@ -16,7 +16,7 @@ public class VPAdapter_walk extends FragmentPagerAdapter {
         items = new ArrayList<>();
         items.add(new FragmentWalkSelf(userIdx, puppyIdx, X_ACCESS_TOKEN));
         items.add(new FragmentWalkSubstitute());
-        items.add(new FragmentWalkDailyRecord(X_ACCESS_TOKEN));
+        items.add(new FragmentWalkDailyRecord(X_ACCESS_TOKEN,userIdx));
 
         itext.add("산책하기");
         itext.add("대리산책");
